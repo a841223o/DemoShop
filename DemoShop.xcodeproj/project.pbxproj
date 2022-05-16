@@ -13,6 +13,9 @@
 		B3A8ABDC2832820A00937B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A8ABDA2832820A00937B1E /* Main.storyboard */; };
 		B3A8ABDE2832820B00937B1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3A8ABDD2832820B00937B1E /* Assets.xcassets */; };
 		B3A8ABE12832820B00937B1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A8ABDF2832820B00937B1E /* LaunchScreen.storyboard */; };
+		B3A8ABF628328CBA00937B1E /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8ABF528328CBA00937B1E /* ItemsViewController.swift */; };
+		B3A8ABF92832929F00937B1E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8ABF82832929F00937B1E /* HomeViewController.swift */; };
+		B3A8ABFD28329B7300937B1E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8ABFC28329B7300937B1E /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		B3A8ABDD2832820B00937B1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3A8ABE02832820B00937B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3A8ABE22832820B00937B1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3A8ABF528328CBA00937B1E /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		B3A8ABF82832929F00937B1E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B3A8ABFC28329B7300937B1E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,9 @@
 		B3A8ABD32832820A00937B1E /* DemoShop */ = {
 			isa = PBXGroup;
 			children = (
+				B3A8ABFA28329B2500937B1E /* Profile */,
+				B3A8ABF72832928500937B1E /* Home */,
+				B3A8ABF328328C7B00937B1E /* items */,
 				B3A8ABD42832820A00937B1E /* AppDelegate.swift */,
 				B3A8ABD62832820A00937B1E /* SceneDelegate.swift */,
 				B3A8ABD82832820A00937B1E /* ViewController.swift */,
@@ -65,6 +74,46 @@
 				B3A8ABE22832820B00937B1E /* Info.plist */,
 			);
 			path = DemoShop;
+			sourceTree = "<group>";
+		};
+		B3A8ABF328328C7B00937B1E /* items */ = {
+			isa = PBXGroup;
+			children = (
+				B3A8ABF428328C9C00937B1E /* View */,
+			);
+			path = items;
+			sourceTree = "<group>";
+		};
+		B3A8ABF428328C9C00937B1E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B3A8ABF528328CBA00937B1E /* ItemsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B3A8ABF72832928500937B1E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B3A8ABF82832929F00937B1E /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B3A8ABFA28329B2500937B1E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B3A8ABFB28329B4D00937B1E /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B3A8ABFB28329B4D00937B1E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B3A8ABFC28329B7300937B1E /* ProfileViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +187,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3A8ABFD28329B7300937B1E /* ProfileViewController.swift in Sources */,
+				B3A8ABF92832929F00937B1E /* HomeViewController.swift in Sources */,
 				B3A8ABD92832820A00937B1E /* ViewController.swift in Sources */,
+				B3A8ABF628328CBA00937B1E /* ItemsViewController.swift in Sources */,
 				B3A8ABD52832820A00937B1E /* AppDelegate.swift in Sources */,
 				B3A8ABD72832820A00937B1E /* SceneDelegate.swift in Sources */,
 			);
