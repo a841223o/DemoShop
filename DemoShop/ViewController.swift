@@ -11,7 +11,13 @@ class ViewController: UIViewController {
     let itemsViewController = ItemsViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
-   
+    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let home = HomeViewController()
+        home.modalPresentationStyle = .fullScreen
+        self.present(home, animated: true)
     }
 
 
