@@ -17,6 +17,13 @@ class ProfileViewController : UIViewController {
     }
     
     func setupNavigationBar(){
+       
+        let appearance = UINavigationBarAppearance.init()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.white
+        self.navigationController?.navigationBar.standardAppearance = appearance
+        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationItem.title = "Profile"
+        
     }
 }

@@ -16,6 +16,7 @@
 		B3A8ABF628328CBA00937B1E /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8ABF528328CBA00937B1E /* ItemsViewController.swift */; };
 		B3A8ABF92832929F00937B1E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8ABF82832929F00937B1E /* HomeViewController.swift */; };
 		B3A8ABFD28329B7300937B1E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8ABFC28329B7300937B1E /* ProfileViewController.swift */; };
+		B3A8AC012832BDCD00937B1E /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8AC002832BDCD00937B1E /* ItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		B3A8ABF528328CBA00937B1E /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		B3A8ABF82832929F00937B1E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B3A8ABFC28329B7300937B1E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B3A8AC002832BDCD00937B1E /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				B3A8ABF528328CBA00937B1E /* ItemsViewController.swift */,
+				B3A8AC002832BDCD00937B1E /* ItemCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				B3A8ABF92832929F00937B1E /* HomeViewController.swift in Sources */,
 				B3A8ABD92832820A00937B1E /* ViewController.swift in Sources */,
 				B3A8ABF628328CBA00937B1E /* ItemsViewController.swift in Sources */,
+				B3A8AC012832BDCD00937B1E /* ItemCell.swift in Sources */,
 				B3A8ABD52832820A00937B1E /* AppDelegate.swift in Sources */,
 				B3A8ABD72832820A00937B1E /* SceneDelegate.swift in Sources */,
 			);
