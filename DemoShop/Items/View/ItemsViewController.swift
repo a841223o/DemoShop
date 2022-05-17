@@ -48,7 +48,7 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
         layout.minimumLineSpacing = 4
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.frame = self.view.frame
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .systemGray4
         
         collectionView.register(
           ItemCell.self,
@@ -72,6 +72,10 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as! ItemCell
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(ItemDetailViewController(), animated: true)
     }
     
 }

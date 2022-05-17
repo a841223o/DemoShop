@@ -17,6 +17,7 @@
 		B3A8ABF92832929F00937B1E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8ABF82832929F00937B1E /* HomeViewController.swift */; };
 		B3A8ABFD28329B7300937B1E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8ABFC28329B7300937B1E /* ProfileViewController.swift */; };
 		B3A8AC012832BDCD00937B1E /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8AC002832BDCD00937B1E /* ItemCell.swift */; };
+		B3A8AC052833D43400937B1E /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8AC042833D43400937B1E /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		B3A8ABF82832929F00937B1E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B3A8ABFC28329B7300937B1E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B3A8AC002832BDCD00937B1E /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		B3A8AC042833D43400937B1E /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +66,10 @@
 		B3A8ABD32832820A00937B1E /* DemoShop */ = {
 			isa = PBXGroup;
 			children = (
+				B3A8AC022833D3E300937B1E /* ItemDetail */,
 				B3A8ABFA28329B2500937B1E /* Profile */,
 				B3A8ABF72832928500937B1E /* Home */,
-				B3A8ABF328328C7B00937B1E /* items */,
+				B3A8ABF328328C7B00937B1E /* Items */,
 				B3A8ABD42832820A00937B1E /* AppDelegate.swift */,
 				B3A8ABD62832820A00937B1E /* SceneDelegate.swift */,
 				B3A8ABD82832820A00937B1E /* ViewController.swift */,
@@ -78,12 +81,12 @@
 			path = DemoShop;
 			sourceTree = "<group>";
 		};
-		B3A8ABF328328C7B00937B1E /* items */ = {
+		B3A8ABF328328C7B00937B1E /* Items */ = {
 			isa = PBXGroup;
 			children = (
 				B3A8ABF428328C9C00937B1E /* View */,
 			);
-			path = items;
+			path = Items;
 			sourceTree = "<group>";
 		};
 		B3A8ABF428328C9C00937B1E /* View */ = {
@@ -115,6 +118,22 @@
 			isa = PBXGroup;
 			children = (
 				B3A8ABFC28329B7300937B1E /* ProfileViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B3A8AC022833D3E300937B1E /* ItemDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B3A8AC032833D3F200937B1E /* View */,
+			);
+			path = ItemDetail;
+			sourceTree = "<group>";
+		};
+		B3A8AC032833D3F200937B1E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B3A8AC042833D43400937B1E /* ItemDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -192,6 +211,7 @@
 			files = (
 				B3A8ABFD28329B7300937B1E /* ProfileViewController.swift in Sources */,
 				B3A8ABF92832929F00937B1E /* HomeViewController.swift in Sources */,
+				B3A8AC052833D43400937B1E /* ItemDetailViewController.swift in Sources */,
 				B3A8ABD92832820A00937B1E /* ViewController.swift in Sources */,
 				B3A8ABF628328CBA00937B1E /* ItemsViewController.swift in Sources */,
 				B3A8AC012832BDCD00937B1E /* ItemCell.swift in Sources */,
