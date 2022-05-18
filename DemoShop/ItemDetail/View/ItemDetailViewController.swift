@@ -99,6 +99,7 @@ class ItemDetailViewController : UIViewController {
         goToPayBtn.setTitle("立刻購買", for: .normal)
         goToPayBtn.configuration = .filled()
         goToPayBtn.configuration?.background.backgroundColor = .systemRed
+        goToPayBtn.addTarget(self, action: #selector(presentToChartList), for: .touchUpInside)
         
         addToCartBtn.setTitle("加入購物車", for: .normal)
         addToCartBtn.setTitleColor(.red, for: .normal)
@@ -107,6 +108,12 @@ class ItemDetailViewController : UIViewController {
         addToCartBtn.configuration?.background.strokeWidth = 2
         addToCartBtn.configuration?.background.strokeColor = .red
 
+    }
+    
+    @objc func presentToChartList(){
+        let viewController = CartListViewController()
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true, completion: nil)
     }
     
 }
