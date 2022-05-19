@@ -56,7 +56,7 @@ class CartListViewController : UIViewController {
         checkBtn.setTitle("結算", for: .normal)
         checkBtn.configuration = .filled()
         checkBtn.configuration?.background.backgroundColor = .systemRed
-       // checkBtn.addTarget(self, action: #selector(presentToChartList), for: .touchUpInside)
+        checkBtn.addTarget(self, action: #selector(presentToCheckOrder), for: .touchUpInside)
         
     }
     
@@ -69,6 +69,13 @@ class CartListViewController : UIViewController {
         itemTableView.dataSource = self
         itemTableView.backgroundColor = .systemGray4
         itemTableView.register(CheckItemCell.self, forCellReuseIdentifier: "CheckItemCell")
+    }
+    
+    @objc func presentToCheckOrder(){
+        let vc = CheckOrderViewController()
+        vc.order =  Order(items: [Item.init(name: "123", description: "123", price: 222, createTime: Date.now, image: ""),Item.init(name: "123", description: "123", price: 222, createTime: Date.now, image: ""),Item.init(name: "123", description: "123", price: 222, createTime: Date.now, image: ""),Item.init(name: "123", description: "123", price: 222, createTime: Date.now, image: ""),Item.init(name: "123", description: "123", price: 222, createTime: Date.now, image: "")])
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
 }

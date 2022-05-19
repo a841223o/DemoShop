@@ -112,8 +112,8 @@ class ItemDetailViewController : UIViewController {
     
     @objc func presentToChartList(){
         let viewController = CartListViewController()
-        viewController.modalPresentationStyle = .fullScreen
-        self.present(viewController, animated: true, completion: nil)
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
