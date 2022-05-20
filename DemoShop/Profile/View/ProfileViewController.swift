@@ -12,26 +12,7 @@ import UIKit
 class ProfileViewController : UIViewController , UITableViewDelegate , UITableViewDataSource {
     
     let tableView : UITableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let  cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.selectionStyle = .none
-        cell.textLabel?.text = "查看訂單"
-        cell.imageView?.image = UIImage.init(systemName: "list.bullet.rectangle.portrait")
-        cell.imageView?.contentMode = .scaleAspectFit
-        cell.imageView?.tintColor = .systemRed
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        50
-    }
-    
-    
+      
     override func viewDidLoad() {
         self.view.backgroundColor = .white
         setupNavigationBar()
@@ -51,8 +32,30 @@ class ProfileViewController : UIViewController , UITableViewDelegate , UITableVi
         appearance.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.standardAppearance = appearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationItem.title = "Profile"
+        navigationItem.title = "個人"
         
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let  cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.selectionStyle = .none
+        cell.textLabel?.text = "查看訂單"
+        cell.imageView?.image = UIImage.init(systemName: "list.bullet.rectangle.portrait")
+        cell.imageView?.contentMode = .scaleAspectFit
+        cell.imageView?.tintColor = .systemRed
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(OrderListViewController(), animated: true)
     }
     
     

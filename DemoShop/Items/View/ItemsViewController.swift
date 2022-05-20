@@ -29,7 +29,7 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
         appearance.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.standardAppearance = appearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = appearance        
-        navigationItem.title = "Leo Shop"
+        navigationItem.title = "商店"
         
     }
     
