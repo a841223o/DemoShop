@@ -16,7 +16,20 @@ enum OrderType {
         case .check:
             return CheckOrderViewBuilder(viewController: viewController)
         case .finished:
-            return CheckOrderViewBuilder(viewController: viewController)
+            return FinishOrderViewBuilder(viewController: viewController)
+        }
+    }
+    
+    func createOrderViewController(order : Order)->OrderViewController{
+        switch self {
+        case .check:
+            let vc = CheckOrderViewController()
+            vc.order = order
+            return vc
+        case .finished:
+            let vc = FinishedOrderViewController()
+            vc.order = order
+            return vc
         }
     }
     

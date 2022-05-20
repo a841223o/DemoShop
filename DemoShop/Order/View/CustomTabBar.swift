@@ -59,7 +59,7 @@ class CustomTabBarCell : UICollectionViewCell {
 }
 
 class CustomTabBar : UIView {
-    
+    weak var delegate : CustomTabBarDelegate?
     private let collectionView = UICollectionView.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private var titles = [String]()
     private var selectedTextColor : UIColor = .black
@@ -84,6 +84,7 @@ class CustomTabBar : UIView {
     func setPosition(position : Int){
         currentPosition = position
         collectionView.reloadData()
+        delegate?.customTabBar(didSelectIndex: position, title: titles[position])
     }
     
     func setupAutoLayout(){
@@ -117,8 +118,13 @@ class CustomTabBar : UIView {
     
 }
 
+protocol CustomTabBarDelegate  : class {
+    func customTabBar(didSelectIndex : Int , title :String)
+}
 
 extension CustomTabBar : UICollectionViewDelegate ,UICollectionViewDataSource{
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return titles.count
     }

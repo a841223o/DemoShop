@@ -19,6 +19,7 @@ class OrderListViewController : UIViewController , ViewModelDelegate , UITableVi
         setupAutoLayout()
         setupTableView()
         setupCustomTab()
+        viewModel.loadOrders()
     }
     
     func setupAutoLayout(){
@@ -49,15 +50,16 @@ class OrderListViewController : UIViewController , ViewModelDelegate , UITableVi
         headView.setUnSelectedTextColor(.black)
         headView.setUnSelectedBottomListColor(.white)
         headView.setTitles(titles: ["未完成" ,"已完成"])
+        headView.delegate = self
     }
     
     func didLoadData() {
-        ()
+        tableView.reloadData()
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return  viewModel.getOrdersWithType().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,6 +68,24 @@ class OrderListViewController : UIViewController , ViewModelDelegate , UITableVi
         cell.detailTextLabel?.text = "購買商品 x 3"
         return cell
     }
-
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let order = viewModel.getOrdersWithType()[indexPath.row]
+        let vc = order.type.createOrderViewController(order: order)
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+}
+
+
+extension OrderListViewController : CustomTabBarDelegate {
+    func customTabBar(didSelectIndex: Int, title: String) {
+        let types :  [OrderType] = [.check , .finished]
+        
+        viewModel.currentTypePage = types[didSelectIndex]
+        tableView.reloadData()
+        
+    }
 }

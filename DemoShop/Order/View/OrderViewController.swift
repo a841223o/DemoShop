@@ -3,7 +3,7 @@
 //  DemoShop
 //
 //  Created by leo on 2022/5/19.
-//
+//  不同狀態的訂單
 
 import Foundation
 import UIKit
@@ -51,6 +51,23 @@ class OrderViewController : UIViewController , UITableViewDelegate , UITableView
 }
 
 class CheckOrderViewController : OrderViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupTableView()
+    }
+    
+    func setupTableView(){
+        tableView.backgroundColor =  .white
+    }
+    
+    func presentFinished(){
+        self.navigationController?.pushViewController(OrderFinishedViewController(), animated: true)
+    }
+    
+}
+
+class FinishedOrderViewController : OrderViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
