@@ -33,6 +33,7 @@
 		B3A8AC272837D5EC00937B1E /* OrderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8AC262837D5EC00937B1E /* OrderListViewController.swift */; };
 		B3A8AC2A2837D69D00937B1E /* OrderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8AC292837D69D00937B1E /* OrderListViewModel.swift */; };
 		B3A8AC2C2837FB6B00937B1E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8AC2B2837FB6B00937B1E /* CustomTabBar.swift */; };
+		B3A8AC2E283825C900937B1E /* OrderInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8AC2D283825C900937B1E /* OrderInfoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		B3A8AC262837D5EC00937B1E /* OrderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewController.swift; sourceTree = "<group>"; };
 		B3A8AC292837D69D00937B1E /* OrderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModel.swift; sourceTree = "<group>"; };
 		B3A8AC2B2837FB6B00937B1E /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		B3A8AC2D283825C900937B1E /* OrderInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				B3A8AC242836B59200937B1E /* OrderFinishedViewController.swift */,
 				B3A8AC262837D5EC00937B1E /* OrderListViewController.swift */,
 				B3A8AC2B2837FB6B00937B1E /* CustomTabBar.swift */,
+				B3A8AC2D283825C900937B1E /* OrderInfoCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				B3A8AC2A2837D69D00937B1E /* OrderListViewModel.swift in Sources */,
 				B3A8AC12283622D700937B1E /* OrderViewController.swift in Sources */,
 				B3A8AC2C2837FB6B00937B1E /* CustomTabBar.swift in Sources */,
+				B3A8AC2E283825C900937B1E /* OrderInfoCell.swift in Sources */,
 				B3A8AC052833D43400937B1E /* ItemDetailViewController.swift in Sources */,
 				B3A8AC212836913400937B1E /* Calculator.swift in Sources */,
 				B3A8AC1B283644CB00937B1E /* SendOrderCell.swift in Sources */,

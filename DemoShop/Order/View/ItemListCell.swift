@@ -101,6 +101,7 @@ class ItemListCell : UITableViewCell {
         self.contentView.addConstraints(containerViewVConstraints)
         self.containerView.addConstraints(stackHConstraints)
         self.containerView.addConstraints(stackVConstraints)
+        itemImageView.centerYAnchor.constraint(equalTo: self.containerView.centerYAnchor).isActive = true
    
     }
     

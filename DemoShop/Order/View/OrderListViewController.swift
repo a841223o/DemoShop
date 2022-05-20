@@ -64,8 +64,8 @@ class OrderListViewController : UIViewController , ViewModelDelegate , UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        cell.textLabel?.text = "訂單編號 : "
-        cell.detailTextLabel?.text = "購買商品 x 3"
+        cell.textLabel?.text = "訂單編號 : \(viewModel.getOrdersWithType()[indexPath.row].id)"
+        cell.detailTextLabel?.text = "購買商品 x \(viewModel.getOrdersWithType()[indexPath.row].items.count)"
         return cell
     }
     

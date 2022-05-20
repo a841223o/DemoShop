@@ -12,6 +12,7 @@ enum CellViewType : String {
     case item = "item"
     case checkBtn = "checkBtn"
     case totalOrder = "totalOrder"
+    case orderInfo = "orderInfo"
 }
 
 protocol OrderViewBuilder {
@@ -38,6 +39,10 @@ class CheckOrderViewBuilder : OrderViewBuilder  , SendOrderCellDelegate {
             return 160
         case .totalOrder:
             return 80
+        case .orderInfo:
+            return 100
+        default :
+            return 0
         }
     }
     
@@ -49,6 +54,10 @@ class CheckOrderViewBuilder : OrderViewBuilder  , SendOrderCellDelegate {
             return order.items.count
         case .totalOrder:
             return 1
+        case .orderInfo :
+            return 1
+        default :
+            return 0
         }
     }
     
@@ -58,7 +67,7 @@ class CheckOrderViewBuilder : OrderViewBuilder  , SendOrderCellDelegate {
         return sections.count
     }
     
-    var sections: [CellViewType] = [.item ,.totalOrder, .checkBtn  ]
+    var sections: [CellViewType] = [.orderInfo ,.item ,.totalOrder, .checkBtn  ]
     
     func getCell(section : Int , row : Int) -> UITableViewCell {
         
@@ -75,6 +84,10 @@ class CheckOrderViewBuilder : OrderViewBuilder  , SendOrderCellDelegate {
             cell.delegate = self
         }
         
+        if let cell = cell as? OrderInfoCell {
+            cell.setup(model: order)
+        }
+        
         return cell 
         
     }
@@ -86,6 +99,7 @@ class CheckOrderViewBuilder : OrderViewBuilder  , SendOrderCellDelegate {
         self.tableView.register(ItemListCell.self, forCellReuseIdentifier: CellViewType.item.rawValue)
         self.tableView.register(SendOrderCell.self, forCellReuseIdentifier: CellViewType.checkBtn.rawValue)
         self.tableView.register(TotalOrderCell.self, forCellReuseIdentifier: CellViewType.totalOrder.rawValue)
+        self.tableView.register(OrderInfoCell.self, forCellReuseIdentifier: CellViewType.orderInfo.rawValue)
     }
     
     func cell(_ sendOrderCell: UITableViewCell, checkBtnClicked: UIButton) {
@@ -109,17 +123,23 @@ class FinishOrderViewBuilder : OrderViewBuilder  {
             return 160
         case .totalOrder:
             return 80
+        case .orderInfo:
+            return 100
+        default :
+            return 0
         }
     }
     
     func numberOfRowsInSection(section: Int)->Int {
         switch sections[section] {
-        case .checkBtn:
-            return 0
         case .item:
             return order.items.count
         case .totalOrder:
             return 1
+        case .orderInfo :
+            return  1
+        default :
+            return 0
         }
     }
     
@@ -129,7 +149,7 @@ class FinishOrderViewBuilder : OrderViewBuilder  {
         return sections.count
     }
     
-    var sections: [CellViewType] = [.item ,.totalOrder, .checkBtn  ]
+    var sections: [CellViewType] = [.orderInfo , .item ,.totalOrder, .checkBtn  ]
     
     func getCell(section : Int , row : Int) -> UITableViewCell {
         
@@ -140,6 +160,10 @@ class FinishOrderViewBuilder : OrderViewBuilder  {
         
         if let cell = cell as? TotalOrderCell {
            cell.setup(model: order)
+        }
+        
+        if let cell = cell as? OrderInfoCell {
+            cell.setup(model: order)
         }
         
         return cell
@@ -153,6 +177,7 @@ class FinishOrderViewBuilder : OrderViewBuilder  {
         self.tableView.register(ItemListCell.self, forCellReuseIdentifier: CellViewType.item.rawValue)
         self.tableView.register(SendOrderCell.self, forCellReuseIdentifier: CellViewType.checkBtn.rawValue)
         self.tableView.register(TotalOrderCell.self, forCellReuseIdentifier: CellViewType.totalOrder.rawValue)
+        self.tableView.register(OrderInfoCell.self, forCellReuseIdentifier: CellViewType.orderInfo.rawValue)
     }
     
     func cell(_ sendOrderCell: UITableViewCell, checkBtnClicked: UIButton) {
