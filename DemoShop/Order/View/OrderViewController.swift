@@ -61,4 +61,8 @@ class CheckOrderViewController : OrderViewController {
         tableView.backgroundColor =  .white
     }
     
+    func presentFinished(){
+        self.navigationController?.pushViewController(OrderFinishedViewController(), animated: true)
+    }
+    
 }

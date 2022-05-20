@@ -24,8 +24,10 @@ protocol OrderViewBuilder {
     func getCell(section : Int , row : Int)->UITableViewCell
 }
 
-class CheckOrderViewBuilder : OrderViewBuilder {
+class CheckOrderViewBuilder : OrderViewBuilder  , SendOrderCellDelegate {
+  
     
+    let viewController : CheckOrderViewController
     var order: Order
     
     func getHightForRowAt(section: Int, row: Int) -> Double {
@@ -69,16 +71,25 @@ class CheckOrderViewBuilder : OrderViewBuilder {
            cell.setup(model: order)
         }
         
+        if let cell = cell as? SendOrderCell {
+            cell.delegate = self
+        }
+        
         return cell 
         
     }
     
     init(viewController : OrderViewController ){
+        self.viewController = viewController as! CheckOrderViewController
         self.order = viewController.order
         self.tableView = viewController.tableView
         self.tableView.register(ItemListCell.self, forCellReuseIdentifier: CellViewType.item.rawValue)
         self.tableView.register(SendOrderCell.self, forCellReuseIdentifier: CellViewType.checkBtn.rawValue)
         self.tableView.register(TotalOrderCell.self, forCellReuseIdentifier: CellViewType.totalOrder.rawValue)
+    }
+    
+    func cell(_ sendOrderCell: UITableViewCell, checkBtnClicked: UIButton) {
+        self.viewController.presentFinished()
     }
     
 }
