@@ -60,7 +60,7 @@ class CheckItemCell : UITableViewCell {
         view.imageView?.contentMode = .scaleAspectFit
         view.contentHorizontalAlignment = .fill
         view.contentVerticalAlignment = .fill
-        
+        view.addTarget(self, action: #selector(clickDeleteBtn(_:)), for: .touchUpInside)
         return view
     }()
     
@@ -134,8 +134,33 @@ class CheckItemCell : UITableViewCell {
     
     @objc func tickCheckBtn(_ sender : UIButton){
         sender.isSelected = !sender.isSelected
+        checkBtnClickCallback?(item , sender.isSelected )
     }
+    
+    @objc func clickDeleteBtn(_ sender : UIButton){
+        deleteBtnClickCallback?(item)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    var item : Item!
+    func setup(item:Item){
+        self.item = item
+        nameLabel.text = item.name
+        priceLabel.text = "NT$ \(item.price)"
+        UIImage.load(url: URL.init(string: item.image)!) { image, url in
+            self.itemImageView.image = image
+        }
+    }
+    var checkBtnClickCallback : ((Item,Bool)->Void)?
+    func addCheckBtnClickAction(callback: @escaping (Item , Bool)->Void){
+        checkBtnClickCallback = callback
+    }
+    
+    var deleteBtnClickCallback : ((Item)->Void)?
+    func addDeleteBtnClickAction(callback: @escaping (Item)->Void){
+        deleteBtnClickCallback = callback
+    }
+    
 }

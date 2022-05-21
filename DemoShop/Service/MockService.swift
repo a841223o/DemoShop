@@ -12,7 +12,7 @@ enum ServiceError : Error {
     case JsonDecoderFaild
 }
 
-class MockService : ServiceProtocol {
+class MockService : HTTPServiceProtocol {
     
     func fetchItems(limit: Int, category: String? , complection : @escaping (Result<[ItemResponseModel] ,ServiceError >) -> Void) {
         guard let url = Bundle.init(for: MockService.self).url(forResource: "itemsResponse", withExtension: "json"),

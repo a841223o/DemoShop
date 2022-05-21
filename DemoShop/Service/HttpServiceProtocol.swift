@@ -8,6 +8,6 @@
 import Foundation
 
 
-protocol ServiceProtocol {
+protocol HTTPServiceProtocol {
     func fetchItems(limit : Int , category : String?, complection : @escaping (Result<[ItemResponseModel] ,ServiceError >) -> Void)
 }

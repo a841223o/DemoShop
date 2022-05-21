@@ -8,11 +8,12 @@
 import Foundation
 import UIKit
 
-class CartListViewController : UIViewController {
-    
+class CartListViewController : UIViewController  {
+
     let itemTableView = UITableView()
     let bottomView = UIView()
     let checkBtn = UIButton()
+    let viewModel = ChartListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,8 +73,12 @@ class CartListViewController : UIViewController {
     }
     
     @objc func presentToCheckOrder(){
+        
+        guard viewModel.checkedItems.count > 0 else {
+            return
+        }
         let vc = CheckOrderViewController()
-        vc.order =  Order(items: [Item.init(name: "123", description: "123", price: 222, createTime: Date.now, image: ""),Item.init(name: "123", description: "123", price: 222, createTime: Date.now, image: ""),Item.init(name: "123", description: "123", price: 222, createTime: Date.now, image: ""),Item.init(name: "123", description: "123", price: 222, createTime: Date.now, image: ""),Item.init(name: "123", description: "123", price: 222, createTime: Date.now, image: "")])
+        vc.order = viewModel.createOrder()
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -83,11 +88,25 @@ class CartListViewController : UIViewController {
 
 extension CartListViewController :  UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.getAllItems().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CheckItemCell", for: indexPath) as! CheckItemCell
+        cell.setup(item: viewModel.getAllItems()[indexPath.row])
+        cell.checkBtn.isSelected = viewModel.checkedItems.contains(indexPath.row)
+        cell.addCheckBtnClickAction { item, isCheck in
+            if isCheck {
+                self.viewModel.addCheckItem(index: indexPath.row)
+            }else{
+                self.viewModel.removeCheckItem(index: indexPath.row)
+            }
+        }
+        cell.addDeleteBtnClickAction { item in
+            self.viewModel.deleteShoppingItem(index: indexPath.row)
+            self.itemTableView.deleteRows(at: [indexPath], with: .left)
+            self.itemTableView.reloadData()
+        }
         return cell
     }
     

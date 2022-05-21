@@ -10,7 +10,14 @@ import UIKit
 
 
 
-class ItemDetailViewController : UIViewController {
+class ItemDetailViewController : UIViewController  , ObserverProtocol {
+    
+    var observerId: Int = 1
+    
+    func onValueChanged(_ value: Any?) {
+        print("\(value)")
+    }
+    
     
     let scrollerView = UIScrollView()
     let imageView = UIImageView()
@@ -30,6 +37,13 @@ class ItemDetailViewController : UIViewController {
         setupScrollerView()
         setupBottomView()
         setup()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        ShoppingCart.shared.numberOfItems.addObserver(self)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        ShoppingCart.shared.numberOfItems.removeObserver(self)
     }
     func setup(){
         UIImage.load(url: URL.init(string: item.image)!, completion: { image, url in
@@ -138,6 +152,7 @@ class ItemDetailViewController : UIViewController {
         addToCartBtn.configuration = .plain()
         addToCartBtn.configuration?.background.strokeWidth = 2
         addToCartBtn.configuration?.background.strokeColor = .red
+        addToCartBtn.addTarget(self, action: #selector(addItemToChartList), for: .touchUpInside)
 
     }
     
@@ -146,5 +161,10 @@ class ItemDetailViewController : UIViewController {
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    @objc func addItemToChartList(){
+        ShoppingCart.shared.add(item: item)
+    }
+
     
 }
