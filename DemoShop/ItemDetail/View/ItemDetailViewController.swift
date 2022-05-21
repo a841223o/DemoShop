@@ -21,13 +21,30 @@ class ItemDetailViewController : UIViewController {
     let addToCartBtn = UIButton()
     let goToPayBtn = UIButton()
     let stackView = UIStackView()
+    let nameSpace = UIView()
+    var item : Item!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAutoLayout()
         setupScrollerView()
         setupBottomView()
+        setup()
     }
-    
+    func setup(){
+        UIImage.load(url: URL.init(string: item.image)!, completion: { image, url in
+            self.imageView.image =  image
+        })
+        nameLabel.text = item.name
+        descriptionLabel.text =  item.description
+        priceLabel.text = "    " + "NT$ \(item.price)"
+        priceLabel.textColor = .systemRed
+        priceLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        nameLabel.font = UIFont.mediumFont
+        descriptionLabel.sizeToFit()
+        descriptionLabel.frame.size = CGSize.init(width: self.view.frame.width, height: descriptionLabel.frame.size.height)
+        fitScrollerContentSize()
+    }
     func setupAutoLayout(){
         self.view.addSubview(scrollerView)
         self.view.addSubview(bottomView)
@@ -40,25 +57,35 @@ class ItemDetailViewController : UIViewController {
         self.view.addConstraints(scrollerBottomConstraints)
         self.view.addConstraints(scrollerViewLeftRightConstraints)
         self.view.addConstraints(bottomViewLeftRightConstraints)
+       
     }
     
     func setupScrollerView(){
+        
         scrollerView.backgroundColor = .systemGray4
         scrollerView.translatesAutoresizingMaskIntoConstraints = false
         scrollerView.layoutIfNeeded()
         scrollerView.addSubview(imageView)
+        scrollerView.addSubview(nameSpace)
         scrollerView.addSubview(nameLabel)
         scrollerView.addSubview(descriptionLabel)
         scrollerView.addSubview(priceLabel)
         imageView.frame.size = CGSize.init(width: scrollerView.frame.width, height: scrollerView.frame.width*1)
-        imageView.backgroundColor = .gray
-        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .white
+        imageView.contentMode = .scaleAspectFit
         
         nameLabel.frame.size = CGSize.init(width: scrollerView.frame.width, height: 80)
-        nameLabel.frame.origin = CGPoint.init(x: 0, y: imageView.frame.height)
+        nameLabel.frame.origin = CGPoint.init(x: 16, y: imageView.frame.height)
         nameLabel.backgroundColor = .white
+        nameLabel.numberOfLines = 2
         nameLabel.text =  "    neme"
-        
+        nameLabel.layoutIfNeeded()
+        nameSpace.frame.origin = CGPoint.init(x: 0, y: imageView.frame.height)
+        nameSpace.frame.size = nameLabel.frame.size
+        nameSpace.backgroundColor = .white
+        print(nameLabel.frame.size)
+        print(nameLabel.frame.origin)
+       
         priceLabel.frame.size = CGSize.init(width: scrollerView.frame.width, height: 80)
         priceLabel.frame.origin = CGPoint.init(x: 0, y: nameLabel.frame.origin.y + nameLabel.frame.height )
         priceLabel.backgroundColor = .white
@@ -72,6 +99,10 @@ class ItemDetailViewController : UIViewController {
         descriptionLabel.isScrollEnabled = false
        
         descriptionLabel.text =  "Whether lineBreakMode is respected depends on how it's set. NSLineBreakByTruncatingTail (the default) is ignored after sizeToFit, as are the other two truncation modes (head and middle). NSLineBreakByClipping is also ignored. NSLineBreakByCharWrapping works as usual. The frame width is still narrowed to fit to the rightmost letter."
+        fitScrollerContentSize()
+    }
+    
+    func fitScrollerContentSize(){
         let viewsInScrollView : [UIView] = [imageView,nameLabel,priceLabel,descriptionLabel]
         var scrollerContentHeight :CGFloat = 0.0
         viewsInScrollView.forEach { view in

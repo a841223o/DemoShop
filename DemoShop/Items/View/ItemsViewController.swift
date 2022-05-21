@@ -10,19 +10,58 @@ import UIKit
 
 
 
-class ItemsViewController : UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , ViewModelDelegate  {
+class ItemsViewController : UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , ViewModelDelegate , CustomTabBarDelegate  {
 
+    
     var collectionView : UICollectionView!
     let viewModel = ItemsViewModel()
-    
+    let customTabBar = CustomTabBar()
     override func viewDidLoad() {
         self.view.backgroundColor = .gray
+        setupAutoLayout()
         setupCollectionView()
+        setupCustomTabBar()
         setupNavigationBar()
         viewModel.delegate = self
         viewModel.loadItems()
+        
     }
-
+    
+    func setupAutoLayout(){
+        let layout = UICollectionViewFlowLayout()
+        let columnCount : Double = 2
+        let space  : Double = 4
+        let width = (self.view.frame.width - space*3 )/columnCount
+        layout.itemSize = CGSize(
+            width: width ,
+            height: self.view.frame.height/3.5)
+        layout.sectionInset = UIEdgeInsets.init(top: 4, left: 4, bottom: 4, right: 4)
+        layout.estimatedItemSize = .zero
+        layout.minimumInteritemSpacing = 4
+        layout.minimumLineSpacing = 4
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        self.collectionView = collectionView
+        self.view.addSubview(collectionView)
+        self.view.addSubview(customTabBar)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        customTabBar.translatesAutoresizingMaskIntoConstraints = false
+        let views = ["collectionView" : collectionView , "customTabBar" : customTabBar]
+        let tableViewHeadViewV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[customTabBar(50)]-(0)-[collectionView]-|", options: [], metrics: nil, views: views)
+        let headViewH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[customTabBar]-0-|", options: [], metrics: nil, views: views)
+        let tableViewH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[collectionView]-0-|", options: [], metrics: nil, views: views)
+        self.view.addConstraints(tableViewHeadViewV)
+        self.view.addConstraints(headViewH)
+        self.view.addConstraints(tableViewH)
+    }
+    
+    func setupCustomTabBar(){
+        customTabBar.setTitles(titles: ["women's clothing" , "electronics" ,"men's clothing"])
+        customTabBar.setSelectedTextColor(.systemRed)
+        customTabBar.setSelectedBottomLineColor(.systemRed)
+        customTabBar.setUnSelectedTextColor(.black)
+        customTabBar.setUnSelectedBottomListColor(.white)
+        customTabBar.delegate = self
+    }
     func setupNavigationBar(){
 
         let appearance = UINavigationBarAppearance.init()
@@ -36,28 +75,14 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
     
     
     func setupCollectionView(){
-        let layout = UICollectionViewFlowLayout()
-        let columnCount : Double = 2
-        let space  : Double = 4
-        let width = (self.view.frame.width - space*3 )/columnCount
-        layout.itemSize = CGSize(
-            width: width ,
-            height: self.view.frame.height/3.5)
-        layout.sectionInset = UIEdgeInsets.init(top: 4, left: 4, bottom: 4, right: 4)
-        layout.estimatedItemSize = .zero
-        layout.minimumInteritemSpacing = 4
-        layout.minimumLineSpacing = 4
-        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collectionView.frame = self.view.frame
-        collectionView.backgroundColor = .systemGray4
         
+        collectionView.backgroundColor = .systemGray4
         collectionView.register(
           ItemCell.self,
           forCellWithReuseIdentifier: "ItemCell")
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        self.view.addSubview(collectionView)
         
     }
 
@@ -80,7 +105,9 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(ItemDetailViewController(), animated: true)
+        let vc = ItemDetailViewController()
+        vc.item = viewModel.items[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -91,6 +118,14 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
             self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0);
         }
     }
+    
+    
+    func customTabBar(didSelectIndex: Int, title: String) {
+        viewModel.category = title 
+        viewModel.items.removeAll()
+        viewModel.loadItems()
+    }
+    
 
 }
 

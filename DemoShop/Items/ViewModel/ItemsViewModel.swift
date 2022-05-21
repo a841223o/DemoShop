@@ -11,10 +11,11 @@ import Foundation
 class ItemsViewModel {
     
     var items = [Item]()
+    var category :String?
     weak var delegate : ViewModelDelegate?
     
     func loadItems(){
-        MockService().fetchItems(limit: 10, category: nil) { result in
+        MockService().fetchItems(limit: 10, category: category) { result in
             switch result {
             case .success(let models):
                 

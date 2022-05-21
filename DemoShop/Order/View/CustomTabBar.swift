@@ -153,7 +153,7 @@ extension CustomTabBar : UICollectionViewDelegate ,UICollectionViewDataSource{
 extension CustomTabBar : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: collectionView.frame.width * 20 / 100, height: collectionView.frame.height)
+        return CGSize(width: collectionView.frame.width / 2, height: collectionView.frame.height)
         
     }
     
