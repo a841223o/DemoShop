@@ -10,16 +10,17 @@ import UIKit
 
 
 
-class ItemsViewController : UIViewController , UICollectionViewDelegate , UICollectionViewDataSource  {
+class ItemsViewController : UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , ViewModelDelegate  {
 
     var collectionView : UICollectionView!
-    
+    let viewModel = ItemsViewModel()
     
     override func viewDidLoad() {
         self.view.backgroundColor = .gray
         setupCollectionView()
         setupNavigationBar()
-        
+        viewModel.delegate = self
+        viewModel.loadItems()
     }
 
     func setupNavigationBar(){
@@ -59,18 +60,22 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
         self.view.addSubview(collectionView)
         
     }
-    
+
+    func didLoadData(){
+        self.collectionView.reloadData()
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return viewModel.items.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as! ItemCell
+        cell.setup(model: viewModel.items[indexPath.row] )
         return cell
     }
     
@@ -78,5 +83,14 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
         self.navigationController?.pushViewController(ItemDetailViewController(), animated: true)
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+       
+        if indexPath.row+2 >= viewModel.items.count {
+            viewModel.loadItems()
+            self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0);
+        }
+    }
+
 }
 

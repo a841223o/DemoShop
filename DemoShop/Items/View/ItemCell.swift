@@ -23,8 +23,7 @@ class ItemCell: UICollectionViewCell {
         self.addSubview(cardView)
         
         imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage.init(named: "placeholder")
+        imageView.contentMode = .scaleAspectFit
         imageView.frame.size = CGSize.init(width:self.frame.width ,  height: self.frame.height*2/3)
         cardView.addSubview(imageView)
         
@@ -50,5 +49,23 @@ class ItemCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    var task : URLSessionDataTask?
 
+    func setup(model : Item){
+
+        nameLabel.text = model.name
+        priceLabel.text = "NT$ \(model.price)"
+        task = UIImage.load(url: URL.init(string: model.image)!) { image , url in
+            DispatchQueue.main.async {
+                    self.imageView.alpha = 1
+                    self.imageView.image = image
+            }
+        }
+    }
+    
+    override func prepareForReuse() {
+        task?.cancel()
+        task = nil
+    }
 }
