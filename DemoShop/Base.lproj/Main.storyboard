@@ -16,14 +16,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9Ey-GN-C1v">
-                                <rect key="frame" x="87" y="345" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9Ey-GN-C1v">
+                                <rect key="frame" x="87" y="320" width="240" height="267.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="IuI-Gd-hpd"/>
+                                </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADa-1q-gvJ">
+                                <rect key="frame" x="41.5" y="608" width="331" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="bgQ-wa-uLN"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="開始購物吧"/>
+                                <connections>
+                                    <action selector="btnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sce-V6-nKE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ADa-1q-gvJ" firstAttribute="top" secondItem="9Ey-GN-C1v" secondAttribute="bottom" constant="20.5" id="1Vz-cb-w2W"/>
+                            <constraint firstItem="9Ey-GN-C1v" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="DvO-Ll-C5J"/>
+                            <constraint firstItem="ADa-1q-gvJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="T7E-nR-mc2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Ey-GN-C1v" secondAttribute="trailing" constant="87" id="dGf-qZ-zhy"/>
+                            <constraint firstItem="9Ey-GN-C1v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="s6y-rM-rc6"/>
+                            <constraint firstItem="9Ey-GN-C1v" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="vbh-dQ-Fj7"/>
+                            <constraint firstItem="ADa-1q-gvJ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="yzp-v1-4uQ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="startBtn" destination="ADa-1q-gvJ" id="5rq-hi-Ll2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
