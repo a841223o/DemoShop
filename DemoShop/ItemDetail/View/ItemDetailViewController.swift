@@ -15,7 +15,10 @@ class ItemDetailViewController : UIViewController  , ObserverProtocol {
     var observerId: Int = 1
     
     func onValueChanged(_ value: Any?) {
-        print("\(value)")
+        guard let value = value as? Int else {
+            return
+        }
+        cartBtn.setBadge(count: value)
     }
     
     
@@ -29,6 +32,7 @@ class ItemDetailViewController : UIViewController  , ObserverProtocol {
     let goToPayBtn = UIButton()
     let stackView = UIStackView()
     let nameSpace = UIView()
+    let cartBtn = BadgeButton()
     var item : Item!
     
     override func viewDidLoad() {
@@ -36,6 +40,7 @@ class ItemDetailViewController : UIViewController  , ObserverProtocol {
         setupAutoLayout()
         setupScrollerView()
         setupBottomView()
+        setupChartBtn()
         setup()
         
     }
@@ -115,6 +120,14 @@ class ItemDetailViewController : UIViewController  , ObserverProtocol {
         descriptionLabel.text =  "Whether lineBreakMode is respected depends on how it's set. NSLineBreakByTruncatingTail (the default) is ignored after sizeToFit, as are the other two truncation modes (head and middle). NSLineBreakByClipping is also ignored. NSLineBreakByCharWrapping works as usual. The frame width is still narrowed to fit to the rightmost letter."
         fitScrollerContentSize()
     }
+    func setupChartBtn(){
+        let right = UIBarButtonItem.init(customView: cartBtn)
+        self.navigationItem.rightBarButtonItem = right
+        cartBtn.setImage(UIImage.init(systemName: "cart"), for: .normal)
+        cartBtn.setBadge(count: 10)
+        cartBtn.setBadge(count: 0)
+        cartBtn.addTarget(self, action: #selector(presentToChartList), for: .touchUpInside)
+    }
     
     func fitScrollerContentSize(){
         let viewsInScrollView : [UIView] = [imageView,nameLabel,priceLabel,descriptionLabel]
@@ -144,7 +157,7 @@ class ItemDetailViewController : UIViewController  , ObserverProtocol {
         goToPayBtn.setTitle("立刻購買", for: .normal)
         goToPayBtn.configuration = .filled()
         goToPayBtn.configuration?.background.backgroundColor = .systemRed
-        goToPayBtn.addTarget(self, action: #selector(presentToChartList), for: .touchUpInside)
+        goToPayBtn.addTarget(self, action: #selector(buyRightNow), for: .touchUpInside)
         
         addToCartBtn.setTitle("加入購物車", for: .normal)
         addToCartBtn.setTitleColor(.red, for: .normal)
@@ -165,6 +178,11 @@ class ItemDetailViewController : UIViewController  , ObserverProtocol {
     @objc func addItemToChartList(){
         ShoppingCart.shared.add(item: item)
     }
-
+    
+    @objc func buyRightNow(){
+        let order = Order.init(items: [item])
+        let vc = order.type.createOrderViewController(order: order)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }

@@ -10,14 +10,16 @@ import UIKit
 
 
 
-class ItemsViewController : UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , ViewModelDelegate , CustomTabBarDelegate  {
+class ItemsViewController : UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , ViewModelDelegate , CustomTabBarDelegate , ObserverProtocol {
 
-    
+    var observerId: Int = 0
     var collectionView : UICollectionView!
     let viewModel = ItemsViewModel()
     let customTabBar = CustomTabBar()
+    let cartBtn = BadgeButton()
     override func viewDidLoad() {
         self.view.backgroundColor = .gray
+        ShoppingCart.shared.numberOfItems.addObserver(self)
         setupAutoLayout()
         setupCollectionView()
         setupCustomTabBar()
@@ -70,9 +72,18 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
         self.navigationController?.navigationBar.standardAppearance = appearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = appearance        
         navigationItem.title = "商店"
-        
+        setupChartBtn()
     }
     
+    func setupChartBtn(){
+        
+        let right = UIBarButtonItem.init(customView: cartBtn)
+        self.navigationItem.rightBarButtonItem = right
+        cartBtn.setImage(UIImage.init(systemName: "cart"), for: .normal)
+        cartBtn.setBadge(count: 10)
+        cartBtn.setBadge(count: 0)
+        cartBtn.addTarget(self, action: #selector(cartBtnClick), for: .touchUpInside)
+    }
     
     func setupCollectionView(){
         
@@ -126,6 +137,18 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
         viewModel.loadItems()
     }
     
+    @objc func cartBtnClick(){
+        let vc = CartListViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func onValueChanged(_ value: Any?) {
+        guard let value = value as? Int  else {
+            return
+        }
+        cartBtn.setBadge(count: value)
+    }
 
 }
 
