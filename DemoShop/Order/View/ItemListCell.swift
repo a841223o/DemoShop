@@ -76,10 +76,7 @@ class ItemListCell : UITableViewCell {
         self.selectionStyle = .none
         setupLayout()
     }
-    func setup(model : Item) {
-        priceLabel.text = "NT$ \(model.price)"
-        nameLabel.text = model.name
-    }
+
     func setupLayout(){
         
         self.namePriceStackView.addArrangedSubview(nameLabel)
@@ -107,5 +104,13 @@ class ItemListCell : UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setup(model : Item){
+        nameLabel.text = model.name
+        priceLabel.text = "NT$ \(model.price)"
+        UIImage.load(url: URL.init(string: model.image)!) { image, url in
+            self.itemImageView.image = image
+        }
     }
 }
