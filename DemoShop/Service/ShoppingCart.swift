@@ -68,8 +68,26 @@ class ShoppingCart {
         numberOfItems.value = items.count
     }
     
+    func remove(item : Item){
+        let index = items.firstIndex { value in
+            value.id == item.id
+        }
+        guard let index = index else {
+            return
+        }
+        items.remove(at: index)
+        numberOfItems.value = items.count
+    }
+    
     func getItems()->[Item]{
         return items
+    }
+    
+    func clearItemInOrder(order : Order){
+        order.items.forEach { item in
+            remove(item: item)
+        }
+        numberOfItems.value = items.count
     }
     
 }

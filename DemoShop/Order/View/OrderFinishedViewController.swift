@@ -34,6 +34,7 @@ class OrderFinishedViewController : UIViewController {
         view.configuration?.background.strokeWidth = 2
         view.configuration?.background.strokeColor = .red
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        view.addTarget(self , action: #selector(goToOrder), for: .touchUpInside)
         return view
     }()
     let label : UILabel = {
@@ -75,6 +76,13 @@ class OrderFinishedViewController : UIViewController {
     }
     
     @objc func goToOrder(){
-        self.navigationController?.popToRootViewController(animated: true)
+        guard let order = LocalStorage.shared.readOrders().last else {
+            return
+        }
+        let rootvc = self.navigationController?.viewControllers.first as! UIViewController
+        let vc = order.type.createOrderViewController(order: order)
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.setViewControllers([rootvc , vc], animated: true)
+        
     }
 }

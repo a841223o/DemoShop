@@ -62,6 +62,9 @@ class CheckOrderViewController : OrderViewController {
     }
     
     func presentFinished(){
+        ShoppingCart.shared.clearItemInOrder(order: order)
+        order.type = .finished
+        LocalStorage.shared.addOrders(order: order)
         self.navigationController?.pushViewController(OrderFinishedViewController(), animated: true)
     }
     
