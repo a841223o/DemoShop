@@ -37,6 +37,7 @@ class ItemDetailViewController : UIViewController  , ObserverProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ShoppingCart.shared.numberOfItems.addObserver(self)
         setupAutoLayout()
         setupScrollerView()
         setupBottomView()
@@ -44,12 +45,7 @@ class ItemDetailViewController : UIViewController  , ObserverProtocol {
         setup()
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        ShoppingCart.shared.numberOfItems.addObserver(self)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        ShoppingCart.shared.numberOfItems.removeObserver(self)
-    }
+ 
     func setup(){
         UIImage.load(url: URL.init(string: item.image)!, completion: { image, url in
             self.imageView.image =  image
@@ -124,9 +120,8 @@ class ItemDetailViewController : UIViewController  , ObserverProtocol {
         let right = UIBarButtonItem.init(customView: cartBtn)
         self.navigationItem.rightBarButtonItem = right
         cartBtn.setImage(UIImage.init(systemName: "cart"), for: .normal)
-        cartBtn.setBadge(count: 10)
-        cartBtn.setBadge(count: 0)
         cartBtn.addTarget(self, action: #selector(presentToChartList), for: .touchUpInside)
+        cartBtn.setBadge(count: ShoppingCart.shared.getItems().count)
     }
     
     func fitScrollerContentSize(){

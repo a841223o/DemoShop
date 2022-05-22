@@ -17,6 +17,7 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
     let viewModel = ItemsViewModel()
     let customTabBar = CustomTabBar()
     let cartBtn = BadgeButton()
+
     override func viewDidLoad() {
         self.view.backgroundColor = .gray
         ShoppingCart.shared.numberOfItems.addObserver(self)

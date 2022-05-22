@@ -11,7 +11,7 @@ import Foundation
 class ItemsViewModel {
     
     var items = [Item]()
-    var category :String?
+    var category :String = "women's clothing"
     weak var delegate : ViewModelDelegate?
     
     func loadItems(){
