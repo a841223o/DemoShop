@@ -8,10 +8,16 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    let itemsViewController = ItemsViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let home = HomeViewController()
+        home.modalPresentationStyle = .fullScreen
+        self.present(home, animated: true)
     }
 
 
