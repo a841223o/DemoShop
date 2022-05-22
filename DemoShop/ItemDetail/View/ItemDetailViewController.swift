@@ -122,6 +122,7 @@ class ItemDetailViewController : UIViewController  , ObserverProtocol {
         cartBtn.setImage(UIImage.init(systemName: "cart"), for: .normal)
         cartBtn.addTarget(self, action: #selector(presentToChartList), for: .touchUpInside)
         cartBtn.setBadge(count: ShoppingCart.shared.getItems().count)
+        cartBtn.setTitle("  ", for: .normal)
     }
     
     func fitScrollerContentSize(){

@@ -81,6 +81,7 @@ class ItemsViewController : UIViewController , UICollectionViewDelegate , UIColl
         let right = UIBarButtonItem.init(customView: cartBtn)
         self.navigationItem.rightBarButtonItem = right
         cartBtn.setImage(UIImage.init(systemName: "cart"), for: .normal)
+        cartBtn.setTitle("  ", for: .normal)
         cartBtn.setBadge(count: 10)
         cartBtn.setBadge(count: 0)
         cartBtn.addTarget(self, action: #selector(cartBtnClick), for: .touchUpInside)
