@@ -42,6 +42,7 @@
 		B3A8AC402838DB6D00937B1E /* +UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8AC3F2838DB6D00937B1E /* +UIImageView.swift */; };
 		B3A8AC432839593C00937B1E /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8AC422839593C00937B1E /* ShoppingCart.swift */; };
 		B3A8AC482839633500937B1E /* CartListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8AC472839633500937B1E /* CartListViewModel.swift */; };
+		B3A8AC4A28397B8C00937B1E /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8AC4928397B8C00937B1E /* LocalStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		B3A8AC3F2838DB6D00937B1E /* +UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+UIImageView.swift"; sourceTree = "<group>"; };
 		B3A8AC422839593C00937B1E /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		B3A8AC472839633500937B1E /* CartListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartListViewModel.swift; sourceTree = "<group>"; };
+		B3A8AC4928397B8C00937B1E /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,9 +116,9 @@
 		B3A8ABD32832820A00937B1E /* DemoShop */ = {
 			isa = PBXGroup;
 			children = (
+				B3A8AC0C2835599C00937B1E /* Extension */,
 				B3A8AC2F2838B61700937B1E /* Service */,
 				B3A8AC0F2836228100937B1E /* Order */,
-				B3A8AC0C2835599C00937B1E /* Extension */,
 				B3A8AC0628352A4A00937B1E /* Cart */,
 				B3A8AC022833D3E300937B1E /* ItemDetail */,
 				B3A8ABFA28329B2500937B1E /* Profile */,
@@ -273,10 +275,8 @@
 		B3A8AC2F2838B61700937B1E /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				B3A8AC362838C5C800937B1E /* ResponseModel */,
-				B3A8AC302838B63E00937B1E /* MockService.swift */,
-				B3A8AC322838B6D600937B1E /* HttpServiceProtocol.swift */,
-				B3A8AC342838C1A900937B1E /* itemsResponse.json */,
+				B3A8AC4C28397BCF00937B1E /* WebService */,
+				B3A8AC4B28397BB000937B1E /* LocalStorage */,
 				B3A8AC422839593C00937B1E /* ShoppingCart.swift */,
 			);
 			path = Service;
@@ -304,6 +304,25 @@
 				B3A8AC472839633500937B1E /* CartListViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B3A8AC4B28397BB000937B1E /* LocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				B3A8AC4928397B8C00937B1E /* LocalStorage.swift */,
+			);
+			path = LocalStorage;
+			sourceTree = "<group>";
+		};
+		B3A8AC4C28397BCF00937B1E /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				B3A8AC362838C5C800937B1E /* ResponseModel */,
+				B3A8AC302838B63E00937B1E /* MockService.swift */,
+				B3A8AC322838B6D600937B1E /* HttpServiceProtocol.swift */,
+				B3A8AC342838C1A900937B1E /* itemsResponse.json */,
+			);
+			path = WebService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,6 +410,7 @@
 				B3A8AC1B283644CB00937B1E /* SendOrderCell.swift in Sources */,
 				B3A8ABD92832820A00937B1E /* ViewController.swift in Sources */,
 				B3A8ABF628328CBA00937B1E /* ItemsViewController.swift in Sources */,
+				B3A8AC4A28397B8C00937B1E /* LocalStorage.swift in Sources */,
 				B3A8AC17283637DA00937B1E /* Order.swift in Sources */,
 				B3A8AC382838C65500937B1E /* ItemResponseModel.swift in Sources */,
 				B3A8AC272837D5EC00937B1E /* OrderListViewController.swift in Sources */,
